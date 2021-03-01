@@ -1,6 +1,5 @@
 import requests
-from lxml import html
-from lxml import etree
+from lxml import html, etree
 
 
 def get_html(url: str):

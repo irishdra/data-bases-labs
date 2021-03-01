@@ -1,6 +1,6 @@
 from page import Page
 from helpers.task1Helper import get_html, get_links, get_tree
-from helpers.data import task1_url, pages_quantity, task1_output
+from helpers.config import task1_url, pages_quantity, task1_output
 
 link_iterator = 0
 pages = [
