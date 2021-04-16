@@ -1,4 +1,3 @@
-
 INFO:root:(2021-04-16 14:55:43.393571) User dragon signed up.
 INFO:root:(2021-04-16 14:55:46.075801) User dragon signed out.
 INFO:root:(2021-04-16 14:55:57.111797) User fakeUser signed up.
