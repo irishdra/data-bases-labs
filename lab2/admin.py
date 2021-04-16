@@ -4,10 +4,9 @@ import os
 import logging
 from pathlib import Path
 
-ACTIVITY_LOGS = "%(asctime)s::%(levelname)s::%(message)s"
-FILE = os.path.join(os.path.dirname(Path(__file__).absolute()), 'activity_logs.log')
+FILE = os.path.join(os.path.dirname(Path(__file__).absolute()), 'activity_logs.txt')
 
-logging.basicConfig(level='INFO', format=ACTIVITY_LOGS, filename=FILE)
+logging.basicConfig(filename="activity_logs.txt", level=logging.INFO)
 
 def admin_menu() -> int:
     print("\nADMIN MENU", 15 * "-", ">")
@@ -49,7 +48,6 @@ def admin():
                     print(index + 1, ". ", sender[0], "(", int(sender[1]), ")")
 
         elif action == 3:
-            print("logs")
             try:
                 with open(FILE) as file:
                     print(file.read())

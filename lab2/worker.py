@@ -33,7 +33,7 @@ class Worker(Thread):
             if is_spam:
                 sender_name = get_username(sender_id)
                 message_text = redis_connection.hmget(message_key, ["text"])[0]
-                redis_connection.publish("spam", f"User {sender_name} sent spam: {message_text}")
+                redis_connection.publish("spam", f"User {sender_name} sent spam: {message_text}.")
 
                 redis_connection.zincrby(f"spam", 1, f"user{sender_id}")
                 redis_connection.hset(message_key, "status", "blocked")

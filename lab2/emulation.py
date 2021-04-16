@@ -24,6 +24,7 @@ def on_emulation_off():
     online = redis_connection.smembers("online")
     for i in online:
         redis_connection.srem("online", i)
+        redis_connection.publish("sign_out", f"User {i} signed out.")
         print(f"{i} exits app. Have a good day!")
 
 if __name__ == '__main__':

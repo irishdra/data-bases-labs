@@ -4,7 +4,7 @@ from threading import Thread
 import datetime
 import logging
 
-logging.basicConfig(filename="activity_logs.log", level=logging.INFO)
+logging.basicConfig(filename="activity_logs.txt", level=logging.INFO)
 
 class Listener(Thread):
     def __init__(self):
