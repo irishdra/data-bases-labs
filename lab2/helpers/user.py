@@ -27,7 +27,7 @@ def sign_up(username):
     for key in user_info.keys():
         redis_connection.hset(user_key, key, user_info[key])
 
-    redis_connection.publish("users", f"User {username} signed up.")
+    redis_connection.publish("sign_up", f"User {username} signed up.")
     redis_connection.sadd("online", username)
     return user_id
 
@@ -38,11 +38,11 @@ def sign_in(username):
         print(username, "does not exist. Please sign up :)")
         return -1
 
-    redis_connection.publish("users", f"User {username} signed in.")
+    redis_connection.publish("sign_in", f"User {username} signed in.")
     redis_connection.sadd("online", username)
     return user_id
 
 def sign_out(user_id):
     username = get_username(user_id)
-    redis_connection.publish("users", f"User {username} signed out.")
+    redis_connection.publish("sign_out", f"User {username} signed out.")
     redis_connection.srem("online", username)

@@ -1,11 +1,21 @@
 from helpers.redis import redis_connection
 
+import os
+import logging
+from pathlib import Path
+
+ACTIVITY_LOGS = "%(asctime)s::%(levelname)s::%(message)s"
+FILE = os.path.join(os.path.dirname(Path(__file__).absolute()), 'activity_logs.log')
+
+logging.basicConfig(level='INFO', format=ACTIVITY_LOGS, filename=FILE)
+
 def admin_menu() -> int:
     print("\nADMIN MENU", 15 * "-", ">")
     print("0. Exit.")
     print("1. Most active senders.")
     print("2. Most active spammers.")
-    print("3. Users online.\n")
+    print("3. View activity logs.")
+    print("4. Users online.\n")
     return int(input("Enter the number of action: "))
 
 def admin():
@@ -39,6 +49,14 @@ def admin():
                     print(index + 1, ". ", sender[0], "(", int(sender[1]), ")")
 
         elif action == 3:
+            print("logs")
+            try:
+                with open(FILE) as file:
+                    print(file.read())
+            except Exception:
+                return "Problem with getting logs."
+
+        elif action == 4:
             online_users = redis_connection.smembers("online")
             if len(online_users) == 0:
                 print("There no users online :(")
@@ -48,7 +66,7 @@ def admin():
                     print(user)
 
         else:
-            print("Choose only available [0-3] actions :)")
+            print("Choose only available [0-4] actions :)")
 
 if __name__ == '__main__':
     admin()
