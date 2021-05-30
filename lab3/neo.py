@@ -19,7 +19,7 @@ def main():
             break
 
         elif action == 1:
-            tags = input("Enter tags separated by comma: ")
+            tags = input("Enter tags separated by comma [family, private, work]: ")
             users_with_tagged_messages = neo4j.get_users_with_tagged_messages(tags)
             print(f"Users: ")
             iter = 1
@@ -54,7 +54,7 @@ def main():
                 iter += 1
 
         elif action == 5:
-            tags = input("Enter tags separated by comma: ")
+            tags = input("Enter tags separated by comma [family, private, work]: ")
             unrelated_users = neo4j.get_unrelated_users_with_tagged_messages(tags)
             print(f"Users: ")
             iter = 1
